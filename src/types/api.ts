@@ -10,6 +10,7 @@ export type APISpaceXResponose = {
     hasNextPage:   boolean;
     prevPage:      null;
     nextPage:      number;
+
 }
 
 export type Doc = {
