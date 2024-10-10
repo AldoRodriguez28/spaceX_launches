@@ -17,12 +17,12 @@ export async function getStaticPaths() {
 ---
 
 <Layout title=`Lanzamiento ${id}`>
-  <div class="px-80 py-auto">
+  <div class="md:px-80 py-auto px-10">
     <article class="w-full text-white">
-      <div class="">
-        <div class="">
+      <div class="min-w-32">
+        <div class="flex justify-center">
           <img
-            class="w-40 h-auto"
+            class="w-40 h-auto mb-2"
             src={launch?.links?.patch.small}
             alt={launch?.name}
           />
