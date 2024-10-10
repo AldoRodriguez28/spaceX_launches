@@ -1,38 +1,47 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getLantestLaunches, getLauncheById } from "../../service/spaceX"
+import { getLantestLaunches, getLauncheById } from "../../service/spaceX";
 
-
-const {id} = Astro.params;
+const { id } = Astro.params;
 let launch: any;
-if(id){
-     launch = await getLauncheById({id});
+if (id) {
+  launch = await getLauncheById({ id });
 }
 
-export async function getStaticPaths(){
-
-        const launches = await getLantestLaunches();
-        return launches.map((launch)=>({
-            params:{id: launch.id }
-        }))
+export async function getStaticPaths() {
+  const launches = await getLantestLaunches();
+  return launches.map((launch) => ({
+    params: { id: launch.id },
+  }));
 }
 ---
-<Layout title=`Lanzamiento ${id}`>
-    <div class="px-80 py-auto">
-        <article class="w-full text-white">
-            <div class="">
-                <div class="">
-                    <img class="w-40 h-auto" src={launch?.links?.patch.small} alt={launch?.name}>
-                </div>
-                <div>
-                    <h2 class="text-4xl text-white font-bold">Launch #{launch?.flight_number}</h2>
-                    <p class="tet-lg">{launch?.details}</p>
-                </div>
-            </div>
-            <a class="text-center text-slate-400 text-wrap" 
-                href={launch?.links?.article}>more information :<br><br>
-                <span class="rounded-md mt-40 hover:text-slate-300 hover:border-2 p-2">{launch.links.article}</span></a>
-        </article>
-    </div>
 
+<Layout title=`Lanzamiento ${id}`>
+  <div class="px-80 py-auto">
+    <article class="w-full text-white">
+      <div class="">
+        <div class="">
+          <img
+            class="w-40 h-auto"
+            src={launch?.links?.patch.small}
+            alt={launch?.name}
+          />
+        </div>
+        <div>
+          <h2 class="text-4xl text-white font-bold">
+            Launch #{launch?.flight_number}
+          </h2>
+          <p class="tet-lg">{launch?.details}</p>
+        </div>
+      </div>
+      <a
+        class="text-center text-slate-400 text-wrap"
+        href={launch?.links?.article}
+        >more information :<br /><br />
+        <span class="rounded-md mt-40 hover:text-slate-300 hover:border-2 p-2"
+          >{launch.links.article}</span
+        ></a
+      >
+    </article>
+  </div>
 </Layout>
